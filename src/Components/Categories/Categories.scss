@@ -53,6 +53,10 @@
       height: 100%;
       object-fit: cover;
       position: relative;
+      transition: transform 0.7s;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
   }
 }
