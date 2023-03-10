@@ -6,14 +6,22 @@ const Card = ({ item }) => {
     <Link className="link" to={`/products/${item.id}`}>
       <div className="card">
         <div className="image">
-          {item.isNew && <span> New Season</span>}
-          <img className="mainImg" src={item.img1} alt="" />
-          <img className="secondImg" src={item.img2} alt="" />
+          {item?.attributes.isNew && <span> New Season</span>}
+          <img
+            className="mainImg"
+            src={"http://localhost:1337" + item.attributes.img1.data.attributes.url}
+            alt=""
+          />
+          <img
+            className="secondImg"
+            src={"http://localhost:1337" + item.attributes.img2.data.attributes.url}
+            alt=""
+          />
         </div>
-        <h2>{item.title}</h2>
+        <h2>{item?.attributes.title}</h2>
         <div className="prices">
-          <h3>${item.oldPrice}</h3>
-          <h3>${item.price}</h3>
+          <h3>${item.oldPrice || item?.attributes.price + 10}</h3>
+          <h3>${item?.attributes.price}</h3>
         </div>
       </div>
     </Link>
