@@ -16,7 +16,6 @@ const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img1");
   const [quantity, setQuantity] = useState(1);
 
-  
   console.log("In product", data);
   // console.log("Selected image",selectedImg)
   // console.log("loading",loading)
@@ -30,30 +29,38 @@ const Product = () => {
           <div className="left">
             <div className="images">
               <img
-                src={process.env.REACT_APP_UPLOAD_URL+data?.attributes?.img1?.data?.attributes?.url}
+                src={
+                  process.env.REACT_APP_UPLOAD_URL +
+                  data?.attributes?.img1?.data?.attributes?.url
+                }
                 alt=""
                 onClick={(e) => setSelectedImg("img1")}
               />
               <img
-                src={process.env.REACT_APP_UPLOAD_URL+data?.attributes?.img2?.data?.attributes?.url}
+                src={
+                  process.env.REACT_APP_UPLOAD_URL +
+                  data?.attributes?.img2?.data?.attributes?.url
+                }
                 alt=""
                 onClick={(e) => setSelectedImg("img2")}
               />
             </div>
             <div className="mainImg">
-            <img 
-                src={process.env.REACT_APP_UPLOAD_URL+data?.attributes[selectedImg]?.data?.attributes?.url}
-                alt=""
-              />
+              
+                <img
+                  src={
+                    process.env.REACT_APP_UPLOAD_URL +
+                    data?.attributes[selectedImg]?.data?.attributes?.url
+                  }
+                  alt=""
+                />
               
             </div>
           </div>
           <div className="right">
             <h1>{data?.attributes?.title}</h1>
-            <span className="price">{"$"+data?.attributes?.price}</span>
-            <p>
-            {data?.attributes?.desc}
-             </p>
+            <span className="price">{"$" + data?.attributes?.price}</span>
+            <p>{data?.attributes?.desc}</p>
 
             <div className="quantity">
               <button
