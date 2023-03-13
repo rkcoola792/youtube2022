@@ -6,6 +6,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BalanceIcon from "@mui/icons-material/Balance";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartReducer";
 const Product = () => {
   // const images = [
   //   "https://images.pexels.com/photos/9939793/pexels-photo-9939793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -19,6 +21,8 @@ const Product = () => {
   console.log("In product", data);
   // console.log("Selected image",selectedImg)
   // console.log("loading",loading)
+
+  const dispatch=useDispatch()
   return (
     <div className="product">
       {loading ? (
@@ -47,13 +51,13 @@ const Product = () => {
             </div>
             <div className="mainImg">
               
-                <img
+                {/* <img
                   src={
                     process.env.REACT_APP_UPLOAD_URL +
                     data?.attributes[selectedImg]?.data?.attributes?.url
                   }
                   alt=""
-                />
+                /> */}
               
             </div>
           </div>
@@ -74,7 +78,14 @@ const Product = () => {
               <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
             </div>
 
-            <button className="add">
+            <button className="add" onClick={()=>dispatch(addToCart({
+              id:data.id,
+              title:data.attributes.title,
+              desc:data.attributes.desc,
+              price:data.attributes.price,
+              img:data.attributes.img1.data.attributes.url,
+              quantity,
+            }))}>
               <ShoppingCartIcon />
               ADD TO CART
             </button>
